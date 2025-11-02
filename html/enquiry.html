@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zakwantu Projects and Services | Enquiry</title>
+  <meta name="description" content="Submit an enquiry to Zakwantu Projects and Services about bursaries, volunteering, or sponsorship opportunities.">
+  <link rel="stylesheet" href="../css/style.css">
+
+  <!-- Leaflet CSS for the map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    /* Map container styling */
+    #map {
+      height: 400px;
+      width: 100%;
+      margin-top: 40px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="../images/logo.jpg" alt="Zakwantu Projects and Services Logo" class="site-logo">
+    <h1>ZAKWANTU PROJECTS & SERVICES</h1>
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="about.html">ABOUT US</a></li>
+        <li><a href="services.html">OUR SERVICES</a></li>
+        <li><a href="ourwork.html">OUR WORK</a></li>
+        <li><a href="contact.html">CONTACT US</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="enquiry-section">
+      <h2>Submit an Enquiry</h2>
+      <p>Interested in partnering with Zakwantu Projects and Services? Fill out the form below to enquire about our bursary programmes, volunteering opportunities, or sponsorship options.</p>
+
+      <form id="enquiryForm" class="enquiry-form" method="post" action="#">
+        <label for="full-name">Full Name:</label>
+        <input type="text" id="full-name" name="full-name" placeholder="Enter your full name" required>
+
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" placeholder="+27..." pattern="[0-9+ ]{10,15}" required>
+
+        <label for="interest">I’m interested in:</label>
+        <select id="interest" name="interest" required>
+          <option value="">Select one...</option>
+          <option value="bursary">Bursary Programme</option>
+          <option value="volunteering">Volunteering</option>
+          <option value="sponsorship">Sponsorship</option>
+        </select>
+
+        <label for="message">Your Message:</label>
+        <textarea id="message" name="message" rows="5" placeholder="Type your message here..." required></textarea>
+
+        <button type="submit" class="primary-btn">Send Enquiry</button>
+      </form>
+    </section>
+
+    <!-- Interactive Map Section -->
+    <section id="map-section">
+      <h2>Our Locations</h2>
+      <div id="map"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Zakwantu Projects & Services. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Leaflet JS for map -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <script src="../js/script.js"></script>
+  <script>
+    // Initialize Leaflet map
+    var map = L.map('map').setView([-32.7188, 25.5895], 8); // Eastern Cape coordinates
+
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Add markers for the communities
+    var locations = [
+      { name: "Somerset East", coords: [-32.719, 25.581] },
+      { name: "Cookhouse", coords: [-32.675, 25.894] },
+      { name: "Bedford", coords: [-32.676, 25.417] },
+      { name: "Adelaide", coords: [-32.633, 25.349] }
+    ];
+
+    locations.forEach(function(loc) {
+      L.marker(loc.coords).addTo(map)
+        .bindPopup("<b>" + loc.name + "</b>").openPopup();
+    });
+  </script>
+</body>
+</html>

@@ -1,9 +1,32 @@
 
+/* Accessibility and Base Styles */
+:root {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   color: #333;
   background-color: #fff;
+  line-height: 1.6;
+}
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  padding: 8px;
+  background-color: #ff6600;
+  color: white;
+  z-index: 1001;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid #ff6600;
+  outline-offset: 2px;
 }
 
   h1, h2, h3, h4, h5, h6 {
@@ -201,4 +224,120 @@ body {
     section {
       padding: 40px 20px;
     }
+
+
+  /* Map styles for enquiry page */
+  .map-container {
+    margin-top: 20px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  #map {
+    width: 100%;
+    height: 360px;
+    border-radius: 6px;
+  }
+
+  .map-note {
+    margin-top: 8px;
+    color: #555;
+    font-size: 14px;
+  }
+    .error-message {
+      color: #ff3300;
+      font-size: 14px;
+      margin-top: -10px;
+      margin-bottom: 10px;
+  font-style: italic;
+}
+
+.input-error {
+  border: 2px solid #ff3300;
+  background-color: #fff0f0;
+}
+
+
+input.input-error, textarea.input-error, select.input-error {
+  transition: border 0.3s, background-color 0.3s;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: #ff6600;
+  outline: none;
+  box-shadow: 0 0 5px rgba(255, 102, 0, 0.5);
+}
+
+/* Enhanced Focus Styles */
+.focus-visible {
+  outline: 3px solid #ff6600;
+  outline-offset: 2px;
+}
+
+/* Loading State Styles */
+.loading {
+  position: relative;
+  opacity: 0.8;
+  cursor: wait;
+}
+
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Enhanced Interactive Elements */
+.buttons a, button, input[type="submit"] {
+  position: relative;
+  overflow: hidden;
+}
+
+.buttons a::after, button::after, input[type="submit"]::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+}
+
+.buttons a:active::after, button:active::after, input[type="submit"]:active::after {
+  width: 200px;
+  height: 200px;
+}
+
+/* Image Optimization */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+[loading="lazy"].loaded {
+  opacity: 1;
+}
   }
